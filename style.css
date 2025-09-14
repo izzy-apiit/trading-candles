@@ -17,17 +17,6 @@ body.candles-page {
   position: relative;
 }
 
-/* middle baseline */
-#candles-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
 /* base candle style */
 .candle {
   position: relative;
