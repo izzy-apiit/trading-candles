@@ -15,13 +15,23 @@ var database = firebase.database();
 // ==================== Candles Setup ====================
 const totalCandles = 20;
 const container = document.getElementById("candles-container");
+const candles = [];
 
 if (container) {
   for (let i = 0; i < totalCandles; i++) {
     const candle = document.createElement("div");
     candle.classList.add("candle");
     candle.id = "candle-" + i;
+
+    // Randomize size for trading effect
+    const bodyHeight = Math.floor(Math.random() * 80) + 40; // 40–120px
+    const wickHeight = Math.floor(Math.random() * 40) + 20; // 20–60px
+
+    candle.style.setProperty("--body-height", `${bodyHeight}px`);
+    candle.style.setProperty("--wick-height", `${wickHeight}px`);
+
     container.appendChild(candle);
+    candles.push(candle);
   }
 }
 
@@ -30,16 +40,14 @@ database.ref("candles/current").on("value", (snapshot) => {
   const litCount = snapshot.val() || 0;
   console.log("🔥 Current candle count:", litCount);
 
-  for (let i = 0; i < totalCandles; i++) {
-    const candle = document.getElementById("candle-" + i);
-    if (candle) {
-      if (i < litCount) {
-        candle.classList.add("lit");
-      } else {
-        candle.classList.remove("lit");
-      }
+  candles.forEach((candle, i) => {
+    if (i < litCount) {
+      candle.classList.add("lit");
+      candle.classList.toggle("red", i % 2 === 1); // alternate red/green
+    } else {
+      candle.classList.remove("lit", "red");
     }
-  }
+  });
 });
 
 // ==================== Control Functions ====================
