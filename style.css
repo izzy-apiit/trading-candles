@@ -1,94 +1,38 @@
-body {
-  margin: 0;
-  background: #0b1a2d;
-  font-family: "Segoe UI", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 #candles-container {
   display: flex;
+  gap: 6px;
   align-items: flex-end;
-  gap: 8px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
+  height: 300px;
 }
 
-/* Base candlestick */
 .candle {
-  width: 20px;
   position: relative;
-  background: #2f3640;
-  border-radius: 3px;
+  width: 12px;
+  background: #222;
+  height: var(--body-height, 60px);
+  border-radius: 2px;
   opacity: 0.3;
-  transform: scaleY(0.3);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease;
 }
-.candle::before,
-.candle::after {
-  content: '';
+
+.candle::before {
+  content: "";
   position: absolute;
-  width: 3px;
-  background: inherit;
   left: 50%;
   transform: translateX(-50%);
+  width: 2px;
+  height: var(--wick-height, 40px);
+  bottom: 100%;
+  background: #444;
 }
-.candle::before { top: -20px; }
-.candle::after { bottom: -20px; }
 
-/* Green */
-.candle.green {
-  background: #2ecc71;
-  box-shadow: 0 0 15px #2ecc71;
+.candle.lit {
+  background: #27ae60; /* green */
   opacity: 1;
-  transform: scaleY(1);
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
 }
-.candle.green::before,
-.candle.green::after { background: #2ecc71; }
 
-/* Red */
-.candle.red {
-  background: #e74c3c;
-  box-shadow: 0 0 15px #e74c3c;
-  opacity: 1;
-  transform: scaleY(1);
-}
-.candle.red::before,
-.candle.red::after { background: #e74c3c; }
-
-/* Control Page */
-.control-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.control-buttons {
-  display: flex;
-  gap: 50px;
-}
-.big-btn {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.big-btn.reset {
-  background: #34495e;
-  color: white;
-}
-.big-btn.start {
-  background: #27ae60;
-  color: white;
-}
-.big-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(255,255,255,0.3);
+.candle.lit.red {
+  background: #e74c3c; /* red */
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
 }
