@@ -2,7 +2,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b1a2d;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -11,14 +10,17 @@ body {
   height: 100vh;
 }
 
-/* =================== Control Page =================== */
-.control-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* =================== Backgrounds =================== */
+body.control-page {
+  background: #0b1a2d; /* plain dark for control */
 }
 
+body.candles-page {
+  background: url("images/candles-bg.jpg") no-repeat center center fixed;
+  background-size: cover; /* make it fill screen */
+}
+
+/* =================== Control Page =================== */
 .control-buttons {
   display: flex;
   gap: 40px;
