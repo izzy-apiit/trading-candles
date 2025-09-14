@@ -9,18 +9,14 @@ body {
   justify-content: center;
   height: 100vh;
   overflow: hidden;
-}
-
-/* =================== Backgrounds =================== */
-body.control-page {
-  background: #0b1a2d; /* plain dark for control */
-}
-
-body.candles-page {
-  background: #0b1a2d; /* restore blue background */
+  background: #0b1a2d; /* dark blue background */
 }
 
 /* =================== Control Page =================== */
+body.control-page {
+  background: #0b1a2d; /* plain dark */
+}
+
 .control-buttons {
   display: flex;
   gap: 60px;
@@ -44,7 +40,6 @@ body.candles-page {
 .big-btn.start {
   background: linear-gradient(135deg, #27ae60, #2ecc71);
 }
-
 .big-btn.start:hover {
   transform: scale(1.1);
   box-shadow: 0 0 25px rgba(46, 204, 113, 0.9);
@@ -54,13 +49,11 @@ body.candles-page {
 .big-btn.reset {
   background: linear-gradient(135deg, #e74c3c, #ff6b6b);
 }
-
 .big-btn.reset:hover {
   transform: scale(1.1);
   box-shadow: 0 0 25px rgba(231, 76, 60, 0.9);
 }
 
-/* Ripple-like effect on click */
 .big-btn:active {
   transform: scale(0.95);
   opacity: 0.85;
@@ -70,14 +63,14 @@ body.candles-page {
 #candles-container {
   display: flex;
   gap: 10px;
-  align-items: center; /* center baseline */
+  align-items: center; /* baseline */
   height: 450px;
   justify-content: center;
   margin-top: 30px;
   position: relative;
 }
 
-/* baseline line */
+/* baseline */
 #candles-container::before {
   content: "";
   position: absolute;
@@ -91,45 +84,45 @@ body.candles-page {
 .candle {
   position: relative;
   width: 14px;
-  background: #222; /* off */
-  height: var(--body-height, 60px);
-  border-radius: 2px;
+  background: #222;
   opacity: 0.3;
-  transition: all 0.4s ease;
-  display: flex;
-  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-/* wick */
+/* Wick */
 .candle::before {
   content: "";
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   width: 2px;
-  height: var(--wick-height, 40px);
   background: #444;
-  transition: all 0.4s ease;
 }
 
-/* Green (up candles) */
+/* Green = bullish, goes UP */
 .candle.lit.green {
   background: #27ae60;
   opacity: 1;
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
-  align-self: flex-end; /* go UP */
+  height: var(--body-height, 80px);
+  align-self: flex-end;
 }
-
 .candle.lit.green::before {
   bottom: 100%;
+  height: var(--wick-height, 40px);
+  background: #27ae60;
 }
 
-/* Red (down candles) */
+/* Red = bearish, goes DOWN */
 .candle.lit.red {
   background: #e74c3c;
   opacity: 1;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
-  align-self: flex-start; /* go DOWN */
+  height: var(--body-height, 80px);
+  align-self: flex-start;
 }
-
 .candle.lit.red::before {
   top: 100%;
+  height: var(--wick-height, 40px);
+  background: #e74c3c;
 }
