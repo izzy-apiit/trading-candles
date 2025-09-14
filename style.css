@@ -17,8 +17,7 @@ body.control-page {
 }
 
 body.candles-page {
-  background: url("images/background.jpg") no-repeat center center fixed;
-  background-size: cover; /* fill screen */
+  background: #0b1a2d; /* restore blue background */
 }
 
 /* =================== Control Page =================== */
@@ -70,11 +69,11 @@ body.candles-page {
 /* =================== Candles =================== */
 #candles-container {
   display: flex;
-  gap: 8px;
-  align-items: center; /* baseline in middle */
-  height: 400px;
+  gap: 10px;
+  align-items: center; /* center baseline */
+  height: 450px;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -97,31 +96,40 @@ body.candles-page {
   border-radius: 2px;
   opacity: 0.3;
   transition: all 0.4s ease;
+  display: flex;
+  justify-content: center;
 }
 
 /* wick */
 .candle::before {
   content: "";
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   width: 2px;
   height: var(--wick-height, 40px);
   background: #444;
   transition: all 0.4s ease;
 }
 
-/* Green (goes UP) */
-.candle.lit {
+/* Green (up candles) */
+.candle.lit.green {
   background: #27ae60;
   opacity: 1;
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
-  align-self: flex-end;
+  align-self: flex-end; /* go UP */
 }
 
-/* Red (goes DOWN) */
+.candle.lit.green::before {
+  bottom: 100%;
+}
+
+/* Red (down candles) */
 .candle.lit.red {
   background: #e74c3c;
+  opacity: 1;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
-  align-self: flex-start;
+  align-self: flex-start; /* go DOWN */
+}
+
+.candle.lit.red::before {
+  top: 100%;
 }
