@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Lamp</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      background: #0b1a2d;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      gap: 40px;
+      color: white;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .landing-buttons {
+      display: flex;
+      gap: 50px;
+    }
+    .landing-buttons a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #27ae60, #2ecc71);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .landing-buttons a.control {
+      background: linear-gradient(145deg, #2980b9, #3498db);
+    }
+    .landing-buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Trading Candles</h1>
+  <div class="landing-buttons">
+    <a href="candles.html">View Display</a>
+    <a href="control.html" class="control">Open Control Panel</a>
+  </div>
+</body>
+</html>
