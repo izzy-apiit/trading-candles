@@ -1,14 +1,17 @@
+/* =================== Candles =================== */
 #candles-container {
   display: flex;
   gap: 6px;
   align-items: flex-end;
   height: 300px;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 .candle {
   position: relative;
   width: 12px;
-  background: #222;
+  background: #222; /* off */
   height: var(--body-height, 60px);
   border-radius: 2px;
   opacity: 0.3;
@@ -26,13 +29,15 @@
   background: #444;
 }
 
+/* Lit candles */
 .candle.lit {
   background: #27ae60; /* green */
   opacity: 1;
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
 }
 
+/* Alternate red */
 .candle.lit.red {
-  background: #e74c3c; /* red */
+  background: #e74c3c;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
 }
