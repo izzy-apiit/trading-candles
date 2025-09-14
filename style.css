@@ -1,3 +1,54 @@
+/* =================== General =================== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1a2d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* =================== Control Page =================== */
+.control-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.big-btn {
+  padding: 25px 60px;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.big-btn.reset {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.big-btn.start {
+  background: #27ae60;
+  color: #fff;
+}
+
+.big-btn:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
 /* =================== Candles =================== */
 #candles-container {
   display: flex;
