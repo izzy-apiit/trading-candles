@@ -1,47 +1,61 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyCniENpn05n_JyZ_rJh2piGOHjT9Pvuc6E",
-  authDomain: "candle-ceremony.firebaseapp.com",
-  databaseURL: "https://candle-ceremony-default-rtdb.firebaseio.com",
-  projectId: "candle-ceremony",
-  storageBucket: "candle-ceremony.firebasestorage.app",
-  messagingSenderId: "1068113076295",
-  appId: "1:1068113076295:web:0d69fb1bfcab057c391162"
+// ==================== Firebase Setup ====================
+var firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+var database = firebase.database();
 
-let totalCandles = 20;
+// ==================== Candles Setup ====================
+const totalCandles = 20;
+const candlesContainer = document.getElementById("candles-container");
 
-db.ref("candles").on("value", snapshot => {
-  const candles = snapshot.val() || [];
-  renderCandles(candles);
+// Create candle divs
+if (candlesContainer) {
+  for (let i = 0; i < totalCandles; i++) {
+    const candle = document.createElement("div");
+    candle.classList.add("candle");
+    candle.id = "candle-" + i;
+    candlesContainer.appendChild(candle);
+  }
+}
+
+// ==================== Display Logic ====================
+database.ref("candles/current").on("value", (snapshot) => {
+  const litCount = snapshot.val() || 0;
+
+  for (let i = 0; i < totalCandles; i++) {
+    const candle = document.getElementById("candle-" + i);
+    if (candle) {
+      if (i < litCount) {
+        candle.classList.add("lit");
+      } else {
+        candle.classList.remove("lit");
+      }
+    }
+  }
 });
 
-function renderCandles(candles) {
-  const container = document.getElementById("candles-container");
-  if (!container) return;
-  container.innerHTML = "";
-  candles.forEach((state, i) => {
-    const div = document.createElement("div");
-    div.className = "candle" + (state ? " " + state : "");
-    div.style.height = (60 + Math.sin(i * 0.7) * 40 + 40) + "px";
-    container.appendChild(div);
+// ==================== Control Functions ====================
+function lightNextCandle() {
+  database.ref("candles/current").transaction((currentValue) => {
+    if (currentValue === null) return 1;
+    if (currentValue < totalCandles) return currentValue + 1;
+    return currentValue; // stop at max
   });
 }
 
 function resetCandles() {
-  const empty = Array(totalCandles).fill(null);
-  db.ref("candles").set(empty);
+  database.ref("candles/current").set(0);
 }
 
-function lightNextCandle() {
-  db.ref("candles").once("value").then(snapshot => {
-    let candles = snapshot.val() || Array(totalCandles).fill(null);
-    let nextIndex = candles.indexOf(null);
-    if (nextIndex !== -1) {
-      candles[nextIndex] = nextIndex % 2 === 0 ? "green" : "red";
-      db.ref("candles").set(candles);
-    }
-  });
-}
+// Expose functions for control.html
+window.lightNextCandle = lightNextCandle;
+window.resetCandles = resetCandles;
