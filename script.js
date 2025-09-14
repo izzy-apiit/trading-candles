@@ -23,9 +23,9 @@ if (container) {
     candle.classList.add("candle");
     candle.id = "candle-" + i;
 
-    // Randomize sizes
-    const bodyHeight = Math.floor(Math.random() * 100) + 40; // 40–140px
-    const wickHeight = Math.floor(Math.random() * 50) + 20;  // 20–70px
+    // randomize body + wick height for trading look
+    const bodyHeight = Math.floor(Math.random() * 80) + 40; // 40–120px
+    const wickHeight = Math.floor(Math.random() * 40) + 20; // 20–60px
 
     candle.style.setProperty("--body-height", `${bodyHeight}px`);
     candle.style.setProperty("--wick-height", `${wickHeight}px`);
@@ -42,7 +42,7 @@ database.ref("candles/current").on("value", (snapshot) => {
 
   candles.forEach((candle, i) => {
     if (i < litCount) {
-      // Alternate direction: even = green (up), odd = red (down)
+      // alternate red/green
       if (i % 2 === 0) {
         candle.classList.add("lit", "green");
         candle.classList.remove("red");
