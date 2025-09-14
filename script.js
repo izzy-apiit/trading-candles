@@ -44,9 +44,9 @@ database.ref("candles/current").on("value", (snapshot) => {
     if (i < litCount) {
       candle.classList.add("lit");
       if (i % 2 === 1) {
-        candle.classList.add("red"); // alternate red
+        candle.classList.add("red"); // red goes DOWN
       } else {
-        candle.classList.remove("red"); // keep green
+        candle.classList.remove("red"); // green goes UP
       }
     } else {
       candle.classList.remove("lit", "red");
