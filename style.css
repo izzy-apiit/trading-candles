@@ -1,3 +1,12 @@
+/* =================== Page Background =================== */
+body.candles-page {
+  margin: 0;
+  background: #0b1a2d; /* deep dark blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 /* =================== Candles =================== */
 #candles-container {
   display: flex;
