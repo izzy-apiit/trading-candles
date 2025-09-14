@@ -23,9 +23,9 @@ if (container) {
     candle.classList.add("candle");
     candle.id = "candle-" + i;
 
-    // Randomize size for trading effect
-    const bodyHeight = Math.floor(Math.random() * 80) + 40; // 40–120px
-    const wickHeight = Math.floor(Math.random() * 40) + 20; // 20–60px
+    // Randomize sizes
+    const bodyHeight = Math.floor(Math.random() * 100) + 40; // 40–140px
+    const wickHeight = Math.floor(Math.random() * 50) + 20;  // 20–70px
 
     candle.style.setProperty("--body-height", `${bodyHeight}px`);
     candle.style.setProperty("--wick-height", `${wickHeight}px`);
@@ -42,14 +42,16 @@ database.ref("candles/current").on("value", (snapshot) => {
 
   candles.forEach((candle, i) => {
     if (i < litCount) {
-      candle.classList.add("lit");
-      if (i % 2 === 1) {
-        candle.classList.add("red"); // red goes DOWN
+      // Alternate direction: even = green (up), odd = red (down)
+      if (i % 2 === 0) {
+        candle.classList.add("lit", "green");
+        candle.classList.remove("red");
       } else {
-        candle.classList.remove("red"); // green goes UP
+        candle.classList.add("lit", "red");
+        candle.classList.remove("green");
       }
     } else {
-      candle.classList.remove("lit", "red");
+      candle.classList.remove("lit", "red", "green");
     }
   });
 });
@@ -59,7 +61,7 @@ function lightNextCandle() {
   database.ref("candles/current").transaction((currentValue) => {
     if (currentValue === null) return 1;
     if (currentValue < totalCandles) return currentValue + 1;
-    return currentValue; // don’t go past max
+    return currentValue;
   });
 }
 
