@@ -1,12 +1,12 @@
 // ==================== Firebase Setup ====================
-var firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+const firebaseConfig = {
+  apiKey: "AIzaSyCniENpn05n_JyZ_rJh2piGOHjT9Pvuc6E",
+  authDomain: "candle-ceremony.firebaseapp.com",
+  databaseURL: "https://candle-ceremony-default-rtdb.firebaseio.com",
+  projectId: "candle-ceremony",
+  storageBucket: "candle-ceremony.firebasestorage.app",
+  messagingSenderId: "1068113076295",
+  appId: "1:1068113076295:web:0d69fb1bfcab057c391162"
 };
 
 firebase.initializeApp(firebaseConfig);
