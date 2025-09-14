@@ -8,6 +8,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* =================== Backgrounds =================== */
@@ -17,38 +18,53 @@ body.control-page {
 
 body.candles-page {
   background: url("images/background.jpg") no-repeat center center fixed;
-  background-size: cover; /* make it fill screen */
+  background-size: cover; /* fill screen */
 }
 
 /* =================== Control Page =================== */
 .control-buttons {
   display: flex;
-  gap: 40px;
+  gap: 60px;
 }
 
 .big-btn {
-  padding: 25px 60px;
+  padding: 30px 70px;
   border: none;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   cursor: pointer;
+  color: #fff;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.big-btn.reset {
-  background: #e74c3c;
-  color: #fff;
-}
-
+/* Start button: green gradient */
 .big-btn.start {
-  background: #27ae60;
-  color: #fff;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
 }
 
-.big-btn:hover {
+.big-btn.start:hover {
   transform: scale(1.1);
-  opacity: 0.9;
+  box-shadow: 0 0 25px rgba(46, 204, 113, 0.9);
+}
+
+/* Reset button: red gradient */
+.big-btn.reset {
+  background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+}
+
+.big-btn.reset:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(231, 76, 60, 0.9);
+}
+
+/* Ripple-like effect on click */
+.big-btn:active {
+  transform: scale(0.95);
+  opacity: 0.85;
 }
 
 /* =================== Candles =================== */
@@ -89,7 +105,7 @@ body.candles-page {
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
 }
 
-/* Alternate red */
+/* Alternate red candles */
 .candle.lit.red {
   background: #e74c3c;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
