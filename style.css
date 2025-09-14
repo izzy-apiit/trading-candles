@@ -1,15 +1,14 @@
 /* =================== Candles =================== */
 #candles-container {
   display: flex;
-  gap: 10px;
-  align-items: center; /* align at middle baseline */
-  height: 500px;
+  gap: 12px;
+  align-items: center; /* baseline in middle */
   justify-content: center;
-  margin-top: 30px;
+  height: 500px;
   position: relative;
 }
 
-/* baseline */
+/* middle baseline */
 #candles-container::before {
   content: "";
   position: absolute;
@@ -20,52 +19,47 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* candle body */
+/* base candle style */
 .candle {
   position: relative;
   width: 14px;
-  background: #222;
+  background: #444;
   opacity: 0.3;
   transition: all 0.3s ease;
 }
 
-/* wick */
-.candle::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-}
-
-/* Green = bullish, extends UP */
-.candle.lit.green {
+/* green = goes UP */
+.candle.green {
   background: #27ae60;
   opacity: 1;
   height: var(--body-height, 80px);
-  box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
-
-  /* position from baseline upwards */
   transform: translateY(calc(-1 * var(--body-height, 80px)));
 }
-.candle.lit.green::before {
+.candle.green::before {
+  content: "";
+  position: absolute;
+  left: 50%;
   bottom: 100%;
+  transform: translateX(-50%);
+  width: 2px;
   height: var(--wick-height, 40px);
   background: #27ae60;
 }
 
-/* Red = bearish, extends DOWN */
-.candle.lit.red {
+/* red = goes DOWN */
+.candle.red {
   background: #e74c3c;
   opacity: 1;
   height: var(--body-height, 80px);
-  box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
-
-  /* stays below baseline */
   transform: translateY(0);
 }
-.candle.lit.red::before {
+.candle.red::before {
+  content: "";
+  position: absolute;
+  left: 50%;
   top: 100%;
+  transform: translateX(-50%);
+  width: 2px;
   height: var(--wick-height, 40px);
   background: #e74c3c;
 }
