@@ -70,23 +70,36 @@ body.candles-page {
 /* =================== Candles =================== */
 #candles-container {
   display: flex;
-  gap: 6px;
-  align-items: flex-end;
-  height: 300px;
+  gap: 8px;
+  align-items: center; /* baseline in middle */
+  height: 400px;
   justify-content: center;
   margin-top: 50px;
+  position: relative;
+}
+
+/* baseline line */
+#candles-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .candle {
   position: relative;
-  width: 12px;
+  width: 14px;
   background: #222; /* off */
   height: var(--body-height, 60px);
   border-radius: 2px;
   opacity: 0.3;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
+/* wick */
 .candle::before {
   content: "";
   position: absolute;
@@ -94,19 +107,21 @@ body.candles-page {
   transform: translateX(-50%);
   width: 2px;
   height: var(--wick-height, 40px);
-  bottom: 100%;
   background: #444;
+  transition: all 0.4s ease;
 }
 
-/* Lit candles */
+/* Green (goes UP) */
 .candle.lit {
-  background: #27ae60; /* green */
+  background: #27ae60;
   opacity: 1;
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.8);
+  align-self: flex-end;
 }
 
-/* Alternate red candles */
+/* Red (goes DOWN) */
 .candle.lit.red {
   background: #e74c3c;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+  align-self: flex-start;
 }
